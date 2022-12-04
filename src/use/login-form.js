@@ -21,7 +21,7 @@ export function useLoginForm() {
 	const MIN_LEN = 6
 
 	const {value:password, errorMessage: pError, handleBlur: pBlur} = useField(
-		'passord',
+		'password',
 		yup
 		.string()
 		.trim()
@@ -38,9 +38,13 @@ export function useLoginForm() {
 	})
 
 	const onSubmit = handleSubmit (async values => {
-		console.log('Form', values);
-		await store.dispatch('auth/login', values)
-		router.push('/')
+		// console.log('Form', values);
+		try {
+			await store.dispatch('auth/login', values)
+			router.push('/')
+		} catch (e) {
+
+		}
 	})
 
 	return {

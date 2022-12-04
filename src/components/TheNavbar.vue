@@ -1,26 +1,25 @@
 <template>
   <nav class="navbar">
     <h3>Online Bank</h3>
+
     <ul class="navbar-menu">
       <li>
         <router-link to="/">Заявки</router-link>
       </li>
       <li>
-        <router-link to="/">Помощь</router-link>
+        <router-link to="/help">Помощь</router-link>
       </li>
       <li>
-        <a href="">Сообщения</a>
+        <a href="#" @click.prevent="open">Сообщения</a>
       </li>
       <li>
-        <a href="" @click.prevent="logout">EXIT</a>
+        <a href="#" @click.prevent="logout">Выход</a>
       </li>
     </ul>
-
   </nav>
 </template>
 
 <script>
-
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 
@@ -33,7 +32,8 @@ export default {
       logout: () => {
         store.commit('auth/logout')
         router.push('/auth')
-      }
+      },
+      open: ()=> store.commit('openSidebar')
     }
   }
 };
